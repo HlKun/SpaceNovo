@@ -1,0 +1,95 @@
+﻿<UserControl x:Class="SpaceNovo.Views.DataBaseView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:SpaceNovo.Views"
+             xmlns:views="clr-namespace:SpaceNovo.Themes"
+             xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid Margin="80 40">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="40"/>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <TextBlock Text="{Binding ChildViewModel.Title,UpdateSourceTrigger=PropertyChanged}"
+                   Foreground="White"
+                   VerticalAlignment="Top" 
+                   Margin="0,0,0,0"
+                   FontSize="20"
+                   FontWeight="Bold"/>
+
+        <Grid Margin="0,0,10,0" Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="40"/>
+            </Grid.RowDefinitions>
+
+            <ContentControl Content="{Binding View}"/>
+
+            <Button Grid.Row="1" 
+                    VerticalAlignment="Center" 
+                    HorizontalAlignment="Center"
+                    Height="32" 
+                    Width="100"
+                    Background="Transparent"
+                    BorderThickness="0"
+                    Foreground="White"
+                    Command="{Binding LoadCmd}">
+                加载数据
+            </Button>
+        </Grid>
+        
+        <lvc:CartesianChart Grid.Row="1" 
+                            Grid.Column="1"
+                            Margin="10,0,0,0"
+                            Series="{Binding ChildViewModel.SeriesCollection,UpdateSourceTrigger=PropertyChanged}" DisableAnimations="True">
+            <lvc:CartesianChart.AxisY>
+                <lvc:Axis Title="Y">
+                    <lvc:Axis.Separator>
+                        <lvc:Separator Stroke="#FF1C313E" StrokeThickness="2"/>
+                    </lvc:Axis.Separator>
+                </lvc:Axis>
+            </lvc:CartesianChart.AxisY>
+
+            <lvc:CartesianChart.AxisX>
+                <lvc:Axis Title="X">
+                    <lvc:Axis.Separator>
+                        <lvc:Separator StrokeThickness="0"/>
+                    </lvc:Axis.Separator>
+                </lvc:Axis>
+            </lvc:CartesianChart.AxisX>
+        </lvc:CartesianChart>
+
+        <views:IconButtom Grid.Row="2"
+                          VerticalAlignment="Center"
+                          HorizontalAlignment="Left"
+                          Height="32"
+                          Icon="/SpaceNovo;component/Assets/bm0.png" 
+                          MouseOverImage="/SpaceNovo;component/Assets/bm1.png"
+                          Command="{Binding HomeCmd}"/>
+
+        <ProgressBar BorderThickness="0"
+                     Grid.Row="2"
+                     Grid.Column="1"
+                     Value="{Binding ChildViewModel.LoadPrecent,UpdateSourceTrigger=PropertyChanged}"
+                     Height="20"
+                     Margin="10,0,0,0"
+                     Style="{DynamicResource ProgressBarStyle1}">
+            <ProgressBar.Foreground>
+                <ImageBrush ImageSource="/SpaceNovo;component/Assets/pb_bg1.png"/>
+            </ProgressBar.Foreground>
+            <ProgressBar.Background>
+                <ImageBrush ImageSource="/SpaceNovo;component/Assets/pb_bg0.png"/>
+            </ProgressBar.Background>
+        </ProgressBar>
+    </Grid>
+</UserControl>

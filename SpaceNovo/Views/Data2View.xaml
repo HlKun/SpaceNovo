@@ -1,0 +1,69 @@
+﻿<UserControl x:Class="SpaceNovo.Views.Data2View"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:SpaceNovo.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <DataGrid CanUserAddRows="False"
+                      CanUserSortColumns="False"
+                      Background="Transparent" 
+                      GridLinesVisibility="None"
+                      ItemsSource="{Binding Datas}" 
+                      AutoGenerateColumns="False"
+                      HeadersVisibility="Column"
+                      BorderThickness="0"
+                      ColumnHeaderStyle="{StaticResource DataGridColumnHeaderStyle}"
+                      RowStyle="{StaticResource DataGridRowStyle}"
+                      CellStyle="{StaticResource DataGridCellStyle}">
+            <DataGrid.Columns>
+                <DataGridTemplateColumn Width="*">
+                    <DataGridTemplateColumn.Header>
+                        <TextBlock Text="序号"></TextBlock>
+                    </DataGridTemplateColumn.Header>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Label Content="{Binding Index}" 
+                                       HorizontalAlignment="Stretch" 
+                                       HorizontalContentAlignment="Center"
+                                       Background="#FF1E303C"
+                                       Foreground="White"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+                <DataGridTemplateColumn Width="2*">
+                    <DataGridTemplateColumn.Header>
+                        <TextBlock Text="X"></TextBlock>
+                    </DataGridTemplateColumn.Header>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Label Content="{Binding X}" 
+                                       HorizontalAlignment="Stretch" 
+                                       HorizontalContentAlignment="Center"
+                                       Background="#FF4A7E96"
+                                       Foreground="White"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+                <DataGridTemplateColumn Width="2*">
+                    <DataGridTemplateColumn.Header>
+                        <TextBlock Text="Y1"></TextBlock>
+                    </DataGridTemplateColumn.Header>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Label Content="{Binding YS[0]}" 
+                                       HorizontalAlignment="Stretch" 
+                                       HorizontalContentAlignment="Center"
+                                       Background="#FF4A7E96"
+                                       Foreground="White"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</UserControl>
